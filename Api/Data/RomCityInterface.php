@@ -8,10 +8,10 @@ namespace Eadesigndev\RomCity\Api\Data;
 
 interface RomCityInterface
 {
-    public const ENTITY_ID = 'entity_id';
-    public const REGION_ID = 'region_id';
-    public const CITY_NAME = 'city';
-
+    /* remove 'public' to support older PHP version */
+    /* public */ const ENTITY_ID = 'entity_id';
+    /* public */ const REGION_ID = 'region_id';
+    /* public */ const CITY_NAME = 'city';
 
     public function getEntityId();
 
