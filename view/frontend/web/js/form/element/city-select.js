@@ -11,7 +11,8 @@ define([
         defaults: {
             imports: {
                 update: '${ $.parentName }.region_id:value',
-                city: '${ $.parentName }.city'
+                city: '${ $.parentName }.city',
+                postcode: '${ $.parentName }.postcode'
             },
             options: [],
             visible: false
@@ -23,6 +24,8 @@ define([
             if (this.name.includes('steps.billing-step')) {
                 this.visible(false)
             }
+
+            this.visible(false);  // hide city select box at start
         },
 
         /**
@@ -53,8 +56,12 @@ define([
                 options = [{title: "", value: "", label: "Select the city"}].concat(options);
                 this.visible(true);
 
-                cityValue = registry.get(this.imports.city).value();
-
+                //cityValue = registry.get(this.imports.city).value();
+                let city = registry.get(this.imports.city);
+                city.visible(false);        // always hide city textbox, if there are options
+                city.value(null);           // reset value in textbox when region is updated
+                registry.get(this.imports.postcode).disabled(true);     // disable postcode textbox
+                
                 if (!this.value() && cityValue) {
                     this.value(cityValue)
                 }
