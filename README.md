@@ -1,18 +1,35 @@
 # Magento 2 City Dropdown
+- add City Dropdown on checkout page
+- hide City Textbox on checkout page
+- when City Dropdown is changed, the value will save into hidden City Textbox
+- when City Dropdown is changed, the Zip Code field will be updated ( function updatePostCode() in RomCity/view/frontend/web/js/form/element/city.js)
 
-- City Dropdown for Magento 2 was created to allow users / merchants to include cities and region / state / province as a dropdown in the checkout process, but more recently when you save a new address, this option is also found there.
-- With this you can import the cities of each region and you can use them as a dropdown in different processes (checkout, new address etc).
-
-
-# Requirements:
-
+# Requirements
 - Magento 2.x
-- Composer
+- Eadesigndev Core component
 
-# Configuration:
+# Installation
+- create directory app/code/Eadesigndev
+- copy Eacore to app/code/Eadesigndev
+- copy RomCity to app/code/Eadesigndev
+- run command
+```
+   bin/magento module:enable Eadesigndev_Eacore
+   bin/magento module:enable Eadesigndev_RomCity
+   bin/magento setup:upgrade
+   bin/magento setup:di:compile
+   bin/magento cache:flush
+```
+- upload Myanmar region (assume database name is 'magento')
+```
+   mysql magento < TableRate/mai-directory_country_regin_MM.sql
+```
+- upload TableRate/mai-tablerates.csv through shipping method 'Table Rate'
+- upload TableRate/mai-township.csv athrough 'RomCity' module
 
-- To install the extension, use the composer, then go to Admin → Store → Configuration → Eadesign Settings → RomCity to activate it.
-- Once it has been activated, it is necessary to import the cities for each region. To import cities you must have a list of cities if you do it in the following way:
-- Go to Manage City List and click the "Go to Import cities" button and load the csv file and then import.
-- After upload file.csv go to save, then push the button ''Import cities!"
-- For the list of cities in Romania, go to project in dir/ Example and download file then go to import.
+# Change city dropdown and shippping rate
+- edit city list in TableRate/mai-township.csv
+- edit city and postcode map in RomCity/view/frontend/web/js/form/element/city.js
+- edit postcode and shipping rate in TableRate/mai-tablerates.csv
+
+
