@@ -80,6 +80,7 @@ define([
                 'Hlegu': '11371',
                 'Hmawbi': '11361',
                 'Htantabin': '11391',
+                'Htauk Kyant': '11022',
                 'Insein': '11011',
                 'Kamayut': '11041',
                 'Kawthmu': '11351',
